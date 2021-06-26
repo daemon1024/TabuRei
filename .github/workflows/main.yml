@@ -1,0 +1,22 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Lint
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: npm install eslint prettier
+    - name: Run ESLint
+      run: npm run eslint --no-eslintrc . --ext .js
+    - name: Run Prettier
+      run: npm run prettier --check
